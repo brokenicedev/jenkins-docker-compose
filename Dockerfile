@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.249.1
+FROM jenkins/jenkins:latest
 MAINTAINER luca.becchetti@brokenice.it
 USER root
 
@@ -21,4 +21,3 @@ RUN adduser jenkins docker
 RUN adduser root docker
 
 USER jenkins
-

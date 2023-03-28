@@ -14,9 +14,16 @@ This is a fully functional Jenkins server with docker and docker-compose install
 # Build local
 
 ```
-docker build -t jenkins-docker-compose:0.0.1 .
+docker build -t brokenice/jenkins-docker-compose:0.0.1 .
 ```
 
+# Push new version to docker-hub
+
+
+```
+docker login -u brokenice
+docker push brokenice/jenkins-docker-compose:0.0.1
+```
 
 # Usage publish version
 

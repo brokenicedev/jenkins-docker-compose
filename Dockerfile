@@ -21,3 +21,11 @@ RUN adduser jenkins docker
 RUN adduser root docker
 
 USER jenkins
+
+# Install docker-rollout plugin
+RUN mkdir -p $HOME/.docker/cli-plugins && \
+    curl -fsSL https://raw.githubusercontent.com/wowu/docker-rollout/master/docker-rollout -o $HOME/.docker/cli-plugins/docker-rollout && \
+    chmod +x $HOME/.docker/cli-plugins/docker-rollout
+
+# Enable blueocean plugin
+RUN jenkins-plugin-cli --plugins "blueocean"

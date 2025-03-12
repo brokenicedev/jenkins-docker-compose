@@ -1,24 +1,23 @@
 FROM jenkins/jenkins:latest
-MAINTAINER luca.becchetti@brokenice.it
+
 USER root
 
-# Install the latest Docker CE binaries
-RUN apt-get update && \
-    apt-get -y install apt-transport-https \
-      ca-certificates \
-      curl \
-      gnupg2 \
-      software-properties-common && \
-    curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg > /tmp/dkey; apt-key add /tmp/dkey && \
-    add-apt-repository \
-      "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-      $(lsb_release -cs) \
-      stable" && \
-   apt-get update && \
-   apt-get -y install docker-ce docker-compose
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
 
-RUN adduser jenkins docker
-RUN adduser root docker
+# Add Docker's official GPG key
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+
+RUN curl -fsSL https://get.docker.com | sh
+RUN usermod -aG docker jenkins
+
+# Add the Jenkins user to the Docker group
+RUN usermod -aG docker jenkins
 
 USER jenkins
 

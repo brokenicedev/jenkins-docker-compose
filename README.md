@@ -17,6 +17,13 @@ This is a fully functional Jenkins server with docker and docker-compose install
 docker build -t brokenice/jenkins-docker-compose:0.0.1 .
 ```
 
+or for amd:
+
+```
+docker pull --platform=linux/amd64 jenkins/jenkins:latest
+docker build --platform=linux/amd64 --no-cache -t brokenice/jenkins-docker-compose:3.0.3 .
+```
+
 # Push new version to docker-hub
 
 

@@ -44,6 +44,7 @@ services:
     image: brokenice/jenkins:2.249.1
     privileged: true
     #user: root
+    # user "jenkins:docker"
     user 1000:998
     ports:
       - 8081:8080
@@ -67,4 +68,8 @@ The jenkins data will survive in the folder **jenkins**
 # to check docker group id
 getent group docker
 
+# Check group users
+ubuntu@vps-2f8c10cc:~/.docker$ docker exec -it jenkins /bin/bash
+jenkins@c057868c84d4:/$ groups jenkins
+jenkins : jenkins docker
 

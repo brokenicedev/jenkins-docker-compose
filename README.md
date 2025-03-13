@@ -43,7 +43,8 @@ services:
   jenkins:
     image: brokenice/jenkins:2.249.1
     privileged: true
-    user: root
+    #user: root
+    user 1000:998
     ports:
       - 8081:8080
       - 50000:50000
@@ -62,4 +63,8 @@ docker-compose up
 ```
 
 The jenkins data will survive in the folder **jenkins**
+
+# to check docker group id
+getent group docker
+
 
